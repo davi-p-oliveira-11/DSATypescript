@@ -143,11 +143,29 @@ class MyArray<T> {
 
     // Return the final accumulated result
     return accumulator;
-}
+  }
 
+  sort(compareFn?: (a: T, b: T) => number): void {
+    // Use default comparison if none is provided
+    const compare = compareFn ?? ((a, b) => {
+      if (a < b) return -1;
+      if (a > b) return 1;
+      return 0;
+    });
 
+    // Bubble sort: repeatedly swap adjacent elements if out of order
+    for (let i = 0; i < this.length; i++) {
+      for (let j = 0; j < this.length - 1 - i; j++) {
+        if (compare(this.data[j], this.data[j + 1]) > 0) {
+          const temp = this.data[j];
+          this.data[j] = this.data[j + 1];
+          this.data[j + 1] = temp;
+        }
+      }
+    }
 
-
+    // No return needed; modifies the current array in place
+  }
 
 }
 
