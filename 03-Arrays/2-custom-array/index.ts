@@ -7,7 +7,7 @@ class MyArray<T> {
      this.data = {};
    }
 
-   push(item: T): number {
+   push(item: T): number | string {
      this.data[this.length] = item;
      this.length++;
      return this.length;
@@ -56,7 +56,7 @@ class MyArray<T> {
    }
 
 
-   delete(index) {
+   delete(index: number) {
      // Store the item to be removed
      const item = this.data[index];
 
@@ -175,6 +175,6 @@ myNewArray.push("two");
 myNewArray.push("three");
 // myNewArray.pop();
 // myNewArray.shift();
-myNewArray.delete(1);
+// myNewArray.delete(1);
 // console.log(myNewArray.get(0));
 console.log(myNewArray);
