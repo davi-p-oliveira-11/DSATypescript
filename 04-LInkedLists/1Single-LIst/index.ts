@@ -34,6 +34,30 @@ class LinkedList<T> {
     this.length++;
   }
 
+  reverse(): this {
+    if (!this.head) return this;
+
+    let temp: Node2<T> | null = this.head;
+    this.head = this.tail;
+    this.tail = temp;
+
+    let next: Node2<T> | null = null;
+    let prev: Node2<T> | null = null;
+
+    for (let i = 0; i < this.length; i++) {
+      if (!temp) break;
+
+      next = temp.next;
+      temp.next = prev;
+      prev = temp;
+      temp = next;
+    }
+
+    return this;
+  }
+
+
+
   pop(): Node2<T> | undefined {
     if (!this.head) return undefined;
 
@@ -123,11 +147,11 @@ class LinkedList<T> {
 
     if (index < 0 || index > this.length) {
       return false;
-    } 
+    }
 
     if (index === 0) {
       return this.unshift(value);
-    }  
+    }
 
     if (index === this.length) {
       this.push(value);
@@ -152,7 +176,7 @@ class LinkedList<T> {
     let counter: number = 0;
     let temp: Node2<T> | null = this.head;
 
-    while(temp !== null) {
+    while (temp !== null) {
       counter++;
       temp = temp.next;
     }
